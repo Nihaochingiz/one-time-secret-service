@@ -1,5 +1,5 @@
 From
- - [avito-trainee-task](https://github.com/avito-tech/mi-trainee-task?tab=readme-ov-file
+ - [avito-trainee-task](https://github.com/avito-tech/mi-trainee-task?tab=readme-ov-file)
  
  
 HTTP сервис для одноразовых секретов наподобие https://onetimesecret.com/.
