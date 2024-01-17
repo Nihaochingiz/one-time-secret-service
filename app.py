@@ -8,7 +8,7 @@ import uvicorn
 
 app = FastAPI()
 
-# Подключение к базе данных MongoDB
+# Connecting to the MongoDB database
 client = pymongo.MongoClient('mongodb://localhost:27017/')
 database = client['secret_database']
 collection = database['secrets']
@@ -20,24 +20,24 @@ class Secret(BaseModel):
 
 @app.post("/generate")
 def generate(secret: Secret):
-    # Преобразование секрета и кодовой фразы в байтовые строки
+   # Convert secret and passphrase to byte strings
     secret_bytes = secret.message.encode('utf-8')
     passphrase_bytes = secret.passphrase.encode('utf-8')
-    # Соединение секрета и кодовой фразы
+    # Сoncatenating secret and the passphrase
     concatenated = secret_bytes + passphrase_bytes
 
-    # Вычисление хэша SHA-256 от объединенной строки
+    # Calculate the SHA-256 hash from the concatenated string
     hash_object = hashlib.sha256(concatenated)
     secret_key = hash_object.hexdigest()
 
-    # Создание документа с секретом, парольной фразой и сгенерированным ключом
+    # Create a document with a secret, passphrase and secret key
     document = {
         'secret': secret.message,
         'passphrase': secret.passphrase,
         'secret_key': secret_key
     }
 
-    # Вставка документа в коллекцию
+   # Inserting a document into a collection
     collection.insert_one(document)
 
     return {"success": True, "secret_key": secret_key}
@@ -51,7 +51,7 @@ def get_secret(secret_key: str):
     if secret_info:
         return {"secret": secret_info["secret"]}
     else:
-        return {"error": "Неверная кодовая фраза!"}
+        return {"error": "Incorrect secret_key!"}
     
 
 
