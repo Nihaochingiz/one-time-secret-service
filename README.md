@@ -1,4 +1,4 @@
-From
+Реализация
  - [avito-trainee-task](https://github.com/avito-tech/mi-trainee-task?tab=readme-ov-file)
  
  
