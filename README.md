@@ -15,11 +15,7 @@ HTTP сервис для одноразовых секретов наподоб�
 Запуск:
 uvicorn main:app --host 0.0.0.0
 
-
-
-Documentation
-
-## Introduction
+## Documentation
 This is a code implementation that utilizes the FastAPI framework to create an API for generating and retrieving secrets. The secrets are stored in a MongoDB database using the `motor` library for asynchronous database operations.
 
 ## Dependencies
